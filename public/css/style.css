@@ -1,0 +1,491 @@
+/* ==========================================================================
+   1. RESET & GLOBAL
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* ==========================================================================
+   2. AUTENTIKASI (LOGIN)
+   ========================================================================== */
+body.auth-page {
+    background-color: #f4f6f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.login-container { width: 100%; max-width: 400px; padding: 20px; }
+
+.login-card {
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.logo-wrapper {
+    display: inline-flex; align-items: center; justify-content: center;
+    background-color: #0d8a4e; color: #fff;
+    width: 48px; height: 48px; border-radius: 10px;
+    font-size: 24px; margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(13, 138, 78, 0.3);
+}
+
+.login-title { font-size: 22px; font-weight: 700; color: #2c3e50; margin-bottom: 6px; }
+.login-subtitle { font-size: 13px; color: #7f8c8d; margin-bottom: 25px; line-height: 1.4; }
+
+.alert-error {
+    background-color: #f8d7da; color: #842029;
+    padding: 10px; border-radius: 6px; font-size: 13px;
+    margin-bottom: 20px; text-align: left; border: 1px solid #f5c2c7;
+}
+
+.form-group { text-align: left; margin-bottom: 18px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; color: #495057; margin-bottom: 6px; }
+
+.input-wrapper { position: relative; display: flex; align-items: center; }
+.input-icon { position: absolute; left: 14px; color: #adb5bd; font-size: 16px; }
+
+.form-group input {
+    width: 100%;
+    padding: 11px 40px;
+    border: 1px solid #ced4da; border-radius: 8px;
+    font-size: 14px; background-color: #f8f9fa; color: #495057;
+    outline: none; transition: all 0.2s ease;
+}
+.form-group input:focus {
+    border-color: #0d8a4e; background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(13, 138, 78, 0.1);
+}
+
+.btn-toggle-password {
+    position: absolute; right: 12px;
+    background: none; border: none; color: #adb5bd;
+    cursor: pointer; font-size: 16px;
+}
+.btn-toggle-password:hover { color: #495057; }
+
+.btn-submit {
+    width: 100%; background-color: #0d8a4e; color: #fff; border: none;
+    padding: 12px; border-radius: 8px; font-size: 15px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    gap: 8px; transition: background-color 0.2s ease; margin-top: 10px;
+}
+.btn-submit:hover { background-color: #0b7341; }
+
+/* ==========================================================================
+   3. LAYOUT DASHBOARD (ADMIN / GURU / SISWA)
+   ========================================================================== */
+.admin-dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+/* Sidebar Kiri (admin/guru) */
+.admin-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.sidebar-brand { padding: 20px; border-bottom: 1px dashed #e2e8f0; }
+.brand-title { font-size: 20px; font-weight: 800; color: #0d8a4e; margin-bottom: 2px; }
+.brand-subtitle { font-size: 11px; color: #64748b; }
+
+.sidebar-badge-role {
+    margin: 15px 20px 5px;
+    background-color: #e6f4ed; color: #0d8a4e;
+    padding: 6px 12px; border-radius: 8px;
+    font-size: 13px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    width: fit-content;
+}
+
+.nav-section-title {
+    font-size: 10px; font-weight: 700; color: #94a3b8;
+    letter-spacing: 0.5px; padding: 15px 20px 5px;
+}
+
+.sidebar-nav { list-style: none; padding: 0 10px; margin: 0; flex-grow: 1; }
+.sidebar-nav li { margin-bottom: 4px; }
+
+.sidebar-nav .nav-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; color: #475569;
+    text-decoration: none; font-size: 13px; font-weight: 500;
+    border-radius: 8px; transition: all 0.2s;
+}
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active { background-color: #0d8a4e; color: #fff; }
+
+.sidebar-footer { padding: 15px 20px; border-top: 1px solid #e2e8f0; background-color: #f8fafc; }
+.academic-year { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #334155; line-height: 1.4; }
+.academic-year i { font-size: 18px; color: #0d8a4e; flex-shrink: 0; }
+
+/* Konten Utama Kanan (admin/guru) */
+.admin-main-content {
+    margin-left: 260px;
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #f8fafc;
+}
+
+/* Topbar */
+.topbar-header {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #fff; padding: 12px 24px; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    margin-bottom: 20px; border: 1px solid #e2e8f0;
+}
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.user-badge-role {
+    background-color: #f1f5f9; color: #334155;
+    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+}
+.user-profile-info { text-align: right; font-size: 13px; }
+.user-avatar img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; display: block; }
+
+/* Logout */
+.logout-form { margin: 0; }
+.btn-logout {
+    display: inline-flex; align-items: center; gap: 6px;
+    background-color: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+    padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+}
+.btn-logout:hover { background-color: #dc2626; border-color: #dc2626; color: #fff; }
+
+/* Banner */
+.welcome-banner {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 22px 26px; display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.badge-semester {
+    background-color: #e6f4ed; color: #0d8a4e;
+    font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 20px; display: inline-block; margin-bottom: 8px;
+}
+.welcome-title { font-size: 22px; font-weight: 700; color: #1e293b; margin: 0 0 4px; line-height: 1.3; }
+.welcome-subtitle { font-size: 13px; color: #64748b; margin: 0; }
+
+.btn-create-task {
+    background-color: #0d8a4e; color: #fff; border: none;
+    padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 13px;
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    box-shadow: 0 2px 6px rgba(13, 138, 78, 0.2); transition: background 0.2s; text-decoration: none;
+}
+.btn-create-task:hover { background-color: #0b7341; color: #fff; }
+
+/* ---------- Quick cards (admin/guru) ---------- */
+.section-heading { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 15px; }
+
+.quick-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 30px; }
+
+.quick-card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+    padding: 18px 14px 16px; display: flex; flex-direction: column;
+    justify-content: space-between; gap: 16px; min-height: 124px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s;
+}
+.quick-card:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.05); }
+
+.q-top { display: flex; align-items: flex-start; gap: 12px; }
+.q-icon-box {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.bg-purple-light { background-color: #e0e7ff; }
+.text-purple     { color: #4f46e5; }
+.bg-orange-light { background-color: #fde4c4; }
+.text-orange     { color: #f97316; }
+.bg-green-light  { background-color: #e6f4ed; }
+.text-green      { color: #0d8a4e; }
+
+.q-content h5 { font-size: 15px; font-weight: 500; color: #1e293b; margin-bottom: 4px; }
+.q-content p { font-size: 12px; color: #64748b; line-height: 1.5; margin: 0; max-width: 230px; }
+
+.q-link { font-size: 12px; font-weight: 600; color: #4338ca; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.q-link:hover { text-decoration: underline; }
+.quick-card:nth-child(2) .q-link { color: #854d0e; }
+
+/* ---------- Tabel tugas masuk ---------- */
+.tasks-review-section {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+    padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+.table-container-card { overflow-x: auto; }
+.table-custom { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+.table-custom th {
+    background-color: #f8fafc; color: #64748b; font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.5px; padding: 12px 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.table-custom td { padding: 14px 15px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+
+.student-info-cell { display: flex; align-items: center; gap: 12px; }
+.avatar-initials {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px;
+}
+.bg-primary-soft { background-color: #dbeafe; color: #1d4ed8; }
+.bg-success-soft { background-color: #dcfce7; color: #15803d; }
+.bg-info-soft    { background-color: #cffafe; color: #0e7490; }
+.bg-purple-soft  { background-color: #f3e8ff; color: #7e22ce; }
+
+.d-text-muted { font-size: 11px; color: #64748b; }
+.badge-status { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.badge-status.warning { background-color: #fef3c7; color: #b45309; }
+
+.btn-action-grade {
+    background-color: #0d8a4e; color: #fff; padding: 6px 12px; border-radius: 6px;
+    text-decoration: none; font-size: 12px; font-weight: 600; border: none;
+    display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;
+}
+.btn-action-grade:hover { background-color: #0b7341; color: #fff; }
+
+.table-footer-info { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; font-size: 12px; color: #64748b; }
+.pagination-buttons { display: flex; gap: 4px; }
+.btn-page { background: #fff; border: 1px solid #e2e8f0; padding: 4px 10px; border-radius: 6px; cursor: pointer; color: #475569; }
+.btn-page:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ==========================================================================
+   3b. KELOLA PROYEK & TUGAS (EDIT / HAPUS)
+   ========================================================================== */
+
+/* Kartu proyek */
+.project-card { border-radius: 12px; }
+
+/* Alert flash (sukses / error) */
+.alert-flash {
+    border-radius: 10px;
+    font-size: 13px;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+}
+.alert-flash ul { font-size: 12px; }
+
+/* Kartu item tugas */
+.task-item { transition: box-shadow 0.2s, border-color 0.2s; }
+.task-item:hover { border-color: #cbd5e1 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+
+/* Bar statistik + tombol aksi */
+.task-action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.task-stats { display: flex; align-items: center; gap: 16px; }
+.task-stats-divider { border-left: 1px solid #e2e8f0; padding-left: 16px; }
+
+.task-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.task-actions form { margin: 0; }
+
+/* Tombol Edit */
+.btn-action-edit {
+    background-color: #eff6ff; color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 12px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; transition: all 0.2s;
+}
+.btn-action-edit:hover { background-color: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+
+/* Tombol Hapus */
+.btn-action-delete {
+    background-color: #fef2f2; color: #dc2626;
+    border: 1px solid #fecaca;
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 12px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; transition: all 0.2s;
+}
+.btn-action-delete:hover { background-color: #dc2626; border-color: #dc2626; color: #fff; }
+
+/* ==========================================================================
+   4. MODAL (TAMBAH & EDIT TUGAS, TAMBAH PROYEK)
+   ========================================================================== */
+.modal-content { border-radius: 16px !important; }
+.modal-header { border-bottom: 1px solid #dee2e6; padding: 1.5rem 1.5rem 1rem; }
+.modal-footer {
+    background-color: #f8f9fa; border-top: 1px solid #dee2e6;
+    border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; padding: 1rem 1.5rem;
+}
+.modal-body .form-control,
+.modal-body .form-select {
+    background-color: #f8f9fa !important; border: 1px solid #ced4da !important;
+    padding: 0.6rem 0.75rem; font-size: 0.9rem;
+}
+.modal-body .form-control:focus,
+.modal-body .form-select:focus {
+    background-color: #fff !important; border-color: #0d8a4e !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 138, 78, 0.15);
+}
+.modal-body .form-label { font-size: 0.85rem; font-weight: 600; color: #212529; margin-bottom: 0.4rem; }
+
+/* Modal Edit: fokus warna biru agar beda dari modal Tambah (hijau) */
+.modal[id^="modalEditTugas"] .modal-body .form-control:focus,
+.modal[id^="modalEditTugas"] .modal-body .form-select:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================================================================
+   5. DASHBOARD SISWA
+   ========================================================================== */
+.siswa-layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* Elemen pertama di dalam wrapper = sidebar siswa, apa pun class-nya */
+.siswa-layout > :first-child:not(.admin-main-content) {
+    position: sticky;
+    top: 0;
+    flex: 0 0 260px;
+    width: 260px;
+    height: 100vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    z-index: 100;
+}
+
+.siswa-layout > .admin-main-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: 0;
+    padding: 28px 32px 40px;
+    font-size: 14px;
+}
+
+/* ---- 5a. Kartu statistik ---- */
+.student-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-card-box {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.stat-icon-wrap {
+    flex: 0 0 44px; width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+
+.stat-info { min-width: 0; }
+.stat-info span {
+    display: block; font-size: 12px; color: #64748b; font-weight: 600;
+    margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.stat-info h3 { font-size: 22px; font-weight: 700; color: #1e293b; margin: 0; line-height: 1.1; }
+
+/* ---- 5b. Grid kartu tugas ---- */
+.student-tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.student-task-card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 20px; min-width: 0; min-height: 290px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.student-task-card:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.05); }
+
+.task-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.task-card-project { flex: 1; min-width: 0; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.task-title {
+    font-size: 15px; font-weight: 700; line-height: 1.4; color: #1e293b; margin: 0 0 6px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.task-teacher { font-size: 12px; color: #64748b; margin: 0 0 16px; }
+
+/* Badge status */
+.badge-sub-info {
+    flex-shrink: 0; white-space: nowrap;
+    font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
+    display: inline-flex; align-items: center; gap: 5px;
+}
+.badge-sub-info.belum-mulai      { background-color: #f1f5f9; color: #475569; }
+.badge-sub-info.sedang-proses    { background-color: #e0e7ff; color: #4f46e5; }
+.badge-sub-info.menunggu-review  { background-color: #fef3c7; color: #b45309; }
+.badge-sub-info.selesai-dinilai  { background-color: #dcfce7; color: #15803d; }
+
+/* Footer kartu */
+.task-card-footer { margin-top: auto; padding-top: 14px; border-top: 1px solid #eef0f3; }
+.task-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 12px; }
+.task-meta-row .label { color: #64748b; white-space: nowrap; }
+.task-meta-row .value { font-weight: 700; white-space: nowrap; }
+
+.task-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 10px 16px; border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+}
+
+/* Form upload */
+.upload-form { display: flex; flex-direction: column; gap: 8px; }
+.upload-form .form-control { font-size: 12px; }
+.upload-hint { font-size: 11px; color: #64748b; }
+
+/* ==========================================================================
+   6. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .student-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 860px) {
+    .quick-cards-grid { grid-template-columns: 1fr; }
+    .siswa-layout { flex-direction: column; align-items: stretch; }
+    .siswa-layout > :first-child:not(.admin-main-content) { position: static; flex: none; width: 100%; height: auto; border-right: 0; border-bottom: 1px solid #e2e8f0; }
+    .siswa-layout > .admin-main-content { padding: 16px; }
+
+    /* Tombol aksi tugas turun ke bawah statistik di layar kecil */
+    .task-action-bar { flex-direction: column; align-items: stretch; }
+    .task-actions { justify-content: flex-start; }
+}
+
+@media (max-width: 520px) {
+    .student-stats-grid { grid-template-columns: 1fr; }
+}
